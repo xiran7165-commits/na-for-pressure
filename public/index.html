@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>N/A for pressure</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <div class="eyebrow">A small place to sort out big feelings</div>
+        <h1>N/A for pressure</h1>
+        <p>Turn a hard-to-say school feeling into kind, clear words.</p>
+      </header>
+
+      <section class="app-card" aria-labelledby="share-heading">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">01 · Start here</div>
+            <h2 id="share-heading">What is weighing on you?</h2>
+          </div>
+          <span class="privacy-pill">Private on this computer</span>
+        </div>
+
+        <div class="topic-picker" aria-label="Choose a topic">
+          <button type="button" data-topic="Test stress">Test stress</button>
+          <button type="button" data-topic="Friendship">Friendship</button>
+          <button type="button" data-topic="Something else">Something else</button>
+        </div>
+
+        <form id="support-form">
+          <input id="topic" type="hidden" value="Something else">
+          <label for="message">Write it the way you would say it</label>
+          <textarea id="message" maxlength="2000" rows="5" placeholder="Example: I have a test tomorrow and I cannot stop worrying that I will disappoint everyone."></textarea>
+          <div class="form-footer">
+            <span class="hint">Press Enter or use the arrow button.</span>
+            <button id="send-button" class="primary-button" type="submit">Suggest kind words  ↑</button>
+          </div>
+        </form>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="answer-card" hidden aria-labelledby="answer-heading">
+        <div class="eyebrow">02 · Your words, reflected</div>
+        <h2 id="answer-heading">A kinder next sentence</h2>
+        <p id="answer" class="answer-text"></p>
+        <div class="keyword-block">
+          <span class="label">Key words I noticed</span>
+          <div id="keywords" class="keywords"></div>
+        </div>
+      </section>
+
+      <section class="saved-card" aria-labelledby="saved-heading">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">03 · Gentle reminders</div>
+            <h2 id="saved-heading">Recent reflections</h2>
+          </div>
+          <span class="local-note">Saves on this computer only for now</span>
+        </div>
+        <div id="saved-items" class="saved-items"></div>
+      </section>
+
+      <footer class="safety-note">
+        If you may hurt yourself or someone else, tell a trusted adult now. In the U.S., call or text <strong>988</strong>; call emergency services if there is immediate danger.
+      </footer>
+    </main>
+    <script src="/storage.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
