@@ -29,7 +29,7 @@ function readInstructions() {
 }
 
 function safetyReply(message) {
-  const dangerWords = /\b(kill|hurt|harm|suicide|self[- ]harm|die|weapon|attack)\b/i;
+  const dangerWords = /\b(suicide|self[- ]harm|end my life|want to die|kill myself|hurt myself|harm myself|kill (?:him|her|them|someone)|hurt (?:him|her|them|someone)|harm (?:him|her|them|someone)|attack (?:him|her|them|someone)|weapon)\b/i;
   return dangerWords.test(message)
     ? {
         keywords: ['safety concern'],
@@ -38,16 +38,20 @@ function safetyReply(message) {
     : null;
 }
 
-async function askOpenAI({ message, topic }) {
+async function askOpenAI({ message, topic, mode = 'comfort' }) {
   const safety = safetyReply(message);
   if (safety) return safety;
 
+  const modeInstructions = mode === 'suggestion'
+    ? 'The student asked for an optional suggestion after receiving kind words. Give one small possible next step, clearly say it is optional, and do not make the student feel forced.'
+    : 'This is the first reply. Give kind, comforting words only. Do not suggest an action yet and do not tell the student what they must do.';
   const system = `${readInstructions()}
 
 Return only JSON with this exact shape:
 {"keywords":["short keyword"],"reply":"2 or 3 kind, easy-to-read sentences"}
 
-The reply must comfort the student first and then suggest one small next step. Do not include markdown, a diagnosis, or claims that you are a human.`;
+${modeInstructions}
+Do not include markdown, a diagnosis, or claims that you are a human.`;
 
   async function request(apiKey) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

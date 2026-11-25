@@ -53,8 +53,8 @@ The AI must never suggest self-harm, revenge, illegal actions, violence, or hand
 - Comfort the student’s feeling first.
 - Sound nice, kind, and never belittling.
 - Do not be contemptuous of what the student is facing.
-- Keep the reply easy to read in 2–3 sentences.
-- Suggest one small next step.
+- Keep the first reply easy to read in 2–3 kind sentences, with comfort first and no required action.
+- If the student asks for a suggestion, give one optional small next step and make clear that they can choose what works for them.
 - Never suggest self-harm, revenge, illegal actions, violence, or handling serious danger alone.
 
 ## Implementation constraints

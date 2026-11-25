@@ -13,7 +13,8 @@ Then open http://localhost:3000.
 ## Done
 
 - Version 1 web app built for test stress and friendship feelings.
-- Students can choose a topic, write what happened, and press Enter or the arrow button.
+- Students can choose a topic, write what happened, and press Enter for kind words.
+- After Enter, students can choose “Want any suggestion?” for an optional next step or stop and decide for themselves.
 - The server asks the OpenAI model `gpt-5.6-luna` for kind words and key words.
 - The AI connects through `getKey()` in `server/keygen.js`.
 - The OpenAI key and MindDo token stay on the server and are never sent to the page.

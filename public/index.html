@@ -35,7 +35,7 @@
           <textarea id="message" maxlength="2000" rows="5" placeholder="Example: I have a test tomorrow and I cannot stop worrying that I will disappoint everyone."></textarea>
           <div class="form-footer">
             <span class="hint">Press Enter or use the arrow button.</span>
-            <button id="send-button" class="primary-button" type="submit">Suggest kind words  ↑</button>
+            <button id="send-button" class="primary-button" type="submit">Enter</button>
           </div>
         </form>
         <p id="status" class="status" role="status" aria-live="polite"></p>
@@ -48,6 +48,11 @@
         <div class="keyword-block">
           <span class="label">Key words I noticed</span>
           <div id="keywords" class="keywords"></div>
+        </div>
+        <button id="suggestion-button" class="secondary-button" type="button" hidden>Want any suggestion?</button>
+        <div id="suggestion-box" class="suggestion-box" hidden>
+          <span class="label">One optional next step</span>
+          <p id="suggestion-answer" class="suggestion-text"></p>
         </div>
       </section>
 

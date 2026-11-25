@@ -42,7 +42,7 @@ async function handleChat(request, response) {
     const message = String(input.message || '').trim();
     if (!message) return sendJson(response, 400, { error: { message: 'Tell me what happened first.', fix: 'Enter a sentence before sending.' } });
     if (message.length > 2000) return sendJson(response, 400, { error: { message: 'That message is too long.', fix: 'Keep the message under 2,000 characters.' } });
-    return sendJson(response, 200, await askOpenAI({ message, topic: input.topic }));
+    return sendJson(response, 200, await askOpenAI({ message, topic: input.topic, mode: input.mode }));
   } catch (error) {
     return sendJson(response, 500, safeErrorResponse(error));
   }

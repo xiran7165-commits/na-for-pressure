@@ -4,9 +4,12 @@ const form = document.querySelector('#support-form');
 const messageInput = document.querySelector('#message');
 const topicInput = document.querySelector('#topic');
 const sendButton = document.querySelector('#send-button');
+const suggestionButton = document.querySelector('#suggestion-button');
 const status = document.querySelector('#status');
 const answer = document.querySelector('#answer');
 const keywords = document.querySelector('#keywords');
+const suggestionBox = document.querySelector('#suggestion-box');
+const suggestionAnswer = document.querySelector('#suggestion-answer');
 const savedItems = document.querySelector('#saved-items');
 
 function showAnswer(data) {
@@ -21,8 +24,21 @@ function escapeHtml(value) {
 
 function setBusy(busy) {
   sendButton.disabled = busy;
-  sendButton.textContent = busy ? 'Thinking…' : 'Suggest kind words  ↑';
+  suggestionButton.disabled = busy;
+  sendButton.textContent = busy ? 'Thinking…' : 'Enter';
   status.textContent = busy ? 'Thinking…' : '';
+}
+
+async function ask(mode) {
+  return fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: messageInput.value.trim(), topic: topicInput.value, mode })
+  }).then(async response => {
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error?.message || 'I couldn’t get an answer right now. Please check the internet and try again.');
+    return data;
+  });
 }
 
 document.querySelectorAll('[data-topic]').forEach(button => {
@@ -44,15 +60,24 @@ form.addEventListener('submit', async event => {
   setBusy(true);
   answer.closest('.answer-card').hidden = true;
   try {
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, topic: topicInput.value })
-    });
-    const data = await response.json();
-    if (!response.ok || data.error) throw new Error(data.error?.message || 'I couldn’t get an answer right now. Please check the internet and try again.');
+    const data = await ask('comfort');
     showAnswer(data);
+    suggestionButton.hidden = false;
+    suggestionBox.hidden = true;
     window.naStorage.renderSavedItems(savedItems, window.naStorage.saveItem({ topic: topicInput.value, message, ...data, createdAt: Date.now() }));
+  } catch (error) {
+    status.textContent = error.message;
+  } finally {
+    setBusy(false);
+  }
+});
+
+suggestionButton.addEventListener('click', async () => {
+  setBusy(true);
+  try {
+    const data = await ask('suggestion');
+    suggestionAnswer.textContent = data.reply;
+    suggestionBox.hidden = false;
   } catch (error) {
     status.textContent = error.message;
   } finally {
