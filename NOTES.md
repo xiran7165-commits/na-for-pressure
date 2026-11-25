@@ -15,7 +15,7 @@ Then open http://localhost:3000.
 - Version 1 web app built for test stress and friendship feelings.
 - Students can choose a topic, write what happened, and press Enter or the arrow button.
 - The server asks the OpenAI model `gpt-5.6-luna` for kind words and key words.
-- The AI key comes from `getKey()` in `server/keygen.js`.
+- The AI connects through `getKey()` in `server/keygen.js`.
 - The OpenAI key and MindDo token stay on the server and are never sent to the page.
 - The button shows “Thinking…” and is disabled while the AI is answering.
 - Danger words stop the AI request and direct the student to a trusted adult and help.
