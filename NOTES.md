@@ -22,6 +22,8 @@ Then open http://localhost:3000.
 - Saves on this computer only for now. Browser saving is kept in `public/storage.js`.
 - `.env` is ignored and must never be committed.
 - After each save point, push it to GitHub.
+- Vercel setup: the page is served from `public/`, and `api/chat.js` is the server function. In Vercel Project Settings → Environment Variables, add `KEYGEN_URL` and `KEYGEN_TOKEN` for the Production, Preview, and Development environments. Do not upload `.env`.
+- To deploy, connect the GitHub repository to Vercel and use the project root. No extra build command is needed; Vercel uses `vercel.json`.
 
 ## MVP checks
 
