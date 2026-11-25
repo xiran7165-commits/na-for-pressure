@@ -27,6 +27,8 @@ Then open http://localhost:3000.
 
 ## MVP checks
 
+Feature 1 verified on November 24, 2026: a student message returned a kind suggestion through the real AI.
+
 1. Write a test or friendship problem and send it: the app shows a kind 2–3 sentence suggestion.
 2. Look below the suggestion: key words appear as small tags.
 3. Choose “Test stress” or “Friendship” before writing: the selected topic is used in the request.
